@@ -7,10 +7,22 @@
     <title>Hangman - Disney</title>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/javascript/game.js">
+    <link rel="javascript" href="assets/javascript/game.js">
     <link href="https://fonts.googleapis.com/css?family=Princess+Sofia&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="hangman-start"></div>
+
+
+    <script>
+    let hangmanStart = document.getElementById("hangman-start");
+
+let h1 = document.createElement('h1');
+    hangmanStart.appendChild(h1);
+    h1.textContent = 'Press Any Key to Start . . .';
+    h1.classList.add('press-start')
     
+
+    </script>
 </body>
 </html>
