@@ -12,30 +12,36 @@
 
 let possibleWords = ['Jasmine', 'Ariel', 'Elsa', 'Anna', 'Aurora', 'Belle', 'Snow White', 'Cinderella', 'Tiana', 'Rapunzel', 'Pocahontas', 'Mulan', 'Merida'];
 let wins = 0;
-let currentWord
-let guessesRemaining
-let lettersGuessed
+let currentWord;
+let guessesRemaining;
+let lettersGuessed;
 
 function initGame() {
-    assignCurrentWord()
-    setEventListeners()
+    assignCurrentWord();
+    setEventListeners();
     guessesRemaining = 5;
     lettersGuessed = [];
-    updateDOM()
+    updateDOM();
 }
-initGame()
+initGame();
+
+
 function wordHasBeenGuessed() {
     for (let i = 0; i < currentWord.length; i++) {
         if (!letterHasBeenGuessed(currentWord[i]))
             return false;
     }
-    return true
+    return true;
 }
+
+
 function assignCurrentWord() {
     const index = Math.floor(Math.random() * ((possibleWords.length - 1) - 0 + 1)) + 0;
     // const index = 6;
-    currentWord = possibleWords[index]
+    currentWord = possibleWords[index];
 }
+
+
 function setEventListeners() {
     document.onkeyup = function (press) {
         if (press.which < 48 || press.which > 90)
@@ -46,54 +52,57 @@ function setEventListeners() {
             return;
         lettersGuessed.push(press.key.toUpperCase())
         if (wordHasBeenGuessed()) {
-            wins++
-            document.getElementById('wins-count').textContent = wins
-            initGame()
+            wins++;
+            document.getElementById('wins-count').textContent = wins;
+            initGame();
         }
-        shouldGuessesGoDown(press.key)
+        shouldGuessesGoDown(press.key);
         console.log(currentWord, lettersGuessed, guessesRemaining)
-        updateDOM()
-        checkIfUserLost()
+        updateDOM();
+        checkIfUserLost();
     }
 }
+
+
 function checkIfUserLost() {
     if (guessesRemaining <= 0) {
         wins = 0;
-        alert('Your Prince Will Never Come\n\nWins Reset!')
+        alert('Your Prince Will Never Come\n\nWins Reset!');
         initGame();
     }
 }
+
+
 function shouldGuessesGoDown(lettersGuessed) {
-    if (!currentWord.includes(lettersGuessed)) {
-        guessesRemaining = guessesRemaining - 1
-    }
+    if (!currentWord.includes(lettersGuessed))
+        guessesRemaining--;
 }
+
+
 function updateDOM() {
-    document.getElementById("guesses-remaining").textContent = guessesRemaining
-    document.getElementById("letters-guessed").textContent = lettersGuessed
-    showLettersOrDashes()
+    document.getElementById("guesses-remaining").textContent = guessesRemaining;
+    document.getElementById("letters-guessed").textContent = lettersGuessed;
+    showLettersOrDashes();
 }
+
+
 function showLettersOrDashes() {
     let displayWord = ''
     for (let i = 0; i < currentWord.length; i++) {
         let letter = currentWord[i];
         if (letter === ' ') {
-            displayWord += '\n'
-        }
-        else if (letterHasBeenGuessed(letter)) {
-            displayWord += letter + ' '
+            displayWord += '\n';
+        } else if (letterHasBeenGuessed(letter)) {
+            displayWord += letter + ' ';
         } else {
-            displayWord += '_' + ' '
+            displayWord += '_' + ' ';
         }
     }
 
-    document.getElementById('display-word').textContent = displayWord
+    document.getElementById('display-word').textContent = displayWord;
 }
+
 
 function letterHasBeenGuessed(letter) {
-    return letter === ' ' || lettersGuessed.includes(letter.toUpperCase())
+    return letter === ' ' || lettersGuessed.includes(letter.toUpperCase());
 }
-
-
-
-
