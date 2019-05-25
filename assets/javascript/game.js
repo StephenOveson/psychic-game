@@ -32,8 +32,8 @@ function wordHasBeenGuessed() {
     return true
 }
 function assignCurrentWord() {
-    // const index = Math.floor(Math.random() * ((possibleWords.length - 1) - 0 + 1)) + 0;
-    const index = 6;
+    const index = Math.floor(Math.random() * ((possibleWords.length - 1) - 0 + 1)) + 0;
+    // const index = 6;
     currentWord = possibleWords[index]
 }
 function setEventListeners() {
