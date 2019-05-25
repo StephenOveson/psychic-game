@@ -12,39 +12,46 @@
 
 let possibleWords = ['Jasmine', 'Ariel', 'Elsa', 'Anna', 'Aurora', 'Belle', 'Snow White', 'Cinderella', 'Tiana', 'Rapunzel', 'Pocahontas', 'Mulan', 'Merida'];
 let wins = 0;
-let currentWord = 'Jasmine';
-let guessesRemaining = 5;
-let lettersGuessed = [];
+let currentWord
+let guessesRemaining
+let lettersGuessed
 
 function initGame() {
     assignCurrentWord()
     setEventListeners()
+    guessesRemaining = 5;
+    lettersGuessed = [];
     updateDOM()
   }
   initGame()
   function wordHasBeenGuessed(){
     for(let i=0; i<currentWord.length; i++){
-      if(lettersGuessed.includes(currentWord[i])){
-        
-      } else {
-        return false
-      }
+        if (!letterHasBeenGuessed(currentWord[i]))
+            return false;
     }
     return true
   }
   function assignCurrentWord() {
-    const index = Math.floor(Math.random() * ((possibleWords.length -1) - 0 + 1)) + 0;
+    // const index = Math.floor(Math.random() * ((possibleWords.length -1) - 0 + 1)) + 0;
+    const index = 6;
     currentWord = possibleWords[index]
   }
   function setEventListeners(){
-    document.onkeyup = function(e){
-      lettersGuessed.push(e.key)
-      if(wordHasBeenGuessed()){
+    document.onkeyup = function(press){
+    if (press.which < 48 || press.which > 90) 
+        return;
+    if (press.altKey || press.metaKey || press.ctrlKey) 
+        return;
+    if (lettersGuessed.includes(press.key)) 
+        return;
+    lettersGuessed.push(press.key.toUpperCase())
+    if(wordHasBeenGuessed()){
         wins++
         document.getElementById('wins-count').textContent = wins
+        alert('You win!')
         initGame()
       }
-      shouldGuessesGoDown(e.key)
+      shouldGuessesGoDown(press.key)
       console.log(currentWord, lettersGuessed, guessesRemaining)
       updateDOM()
       checkIfUserLost()
@@ -53,6 +60,7 @@ function initGame() {
   function checkIfUserLost(){
     if(guessesRemaining <= 0){
       alert('you lost')
+      initGame();
     }
   }
   function shouldGuessesGoDown(lettersGuessed){
@@ -76,6 +84,11 @@ function initGame() {
     }
     document.getElementById('display-word').textContent = displayWord
   }
+  
+  function letterHasBeenGuessed(letter){
+        return letter === ' ' || lettersGuessed.includes(letter.toUpperCase())
+  }
 
+  
 
 
