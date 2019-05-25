@@ -10,9 +10,9 @@
 // display "press any key to start"
 // when you press key display changes to Hangman game
 
-let hangmanStart = document.getElementById("hangman-start");
-    hangmanStart.textContent = "Press Any Key to Start";
+let disneyWords = ['Jasmine', 'Ariel', 'Elsa', 'Anna', 'Aurora', 'Belle', 'Snow White', 'Cinderella', 'Tiana', 'Rapunzel', 'Pocahontas', 'Mulan', 'Merida'];
+let wins = 0;
+let guessesRemain = 6;
+let lettersGuessed = [];
 
-let h1 = document.createElement('h1');
-    hangmanStart.appendChild(h1);
-    h1.textContent = 'Press Any Key to Start . . .';
+
