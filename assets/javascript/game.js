@@ -1,15 +1,3 @@
-// Pseudo Coding
-// Hangman Game 
-// Display wins - 0
-// add a win for each word Solved
-// Display a random word
-// Display random word as blanks
-// guesses display
-// wrong guess = 1 try gone
-// right guess = display letter
-// display "press any key to start"
-// when you press key display changes to Hangman game
-
 let possibleWords = ['Jasmine', 'Ariel', 'Elsa', 'Anna', 'Aurora', 'Belle', 'Snow White', 'Cinderella', 'Tiana', 'Rapunzel', 'Pocahontas', 'Mulan', 'Merida'];
 let wins = 0;
 let currentWord;
@@ -50,14 +38,14 @@ function setEventListeners() {
             return;
         if (letterHasBeenGuessed(press.key))
             return;
-        lettersGuessed.push(press.key.toUpperCase())
+        lettersGuessed.push(press.key.toUpperCase());
         if (wordHasBeenGuessed()) {
             wins++;
             document.getElementById('wins-count').textContent = wins;
             initGame();
         }
         shouldGuessesGoDown(press.key);
-        console.log(currentWord, lettersGuessed, guessesRemaining)
+        console.log(currentWord, lettersGuessed, guessesRemaining);
         updateDOM();
         checkIfUserLost();
     }
@@ -87,7 +75,7 @@ function updateDOM() {
 
 
 function showLettersOrDashes() {
-    let displayWord = ''
+    let displayWord = '';
     for (let i = 0; i < currentWord.length; i++) {
         let letter = currentWord[i];
         if (letter === ' ') {
