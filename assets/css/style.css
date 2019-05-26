@@ -1,0 +1,15 @@
+body {
+    font-family: 'Princess Sofia';
+    font-weight: 300;
+}
+
+#display-word {
+    white-space: pre-wrap;
+}
+
+#font-set {
+    font-size: 45px;
+    max-width: 960px;
+    line-height: 90px;
+    margin: auto;
+}
