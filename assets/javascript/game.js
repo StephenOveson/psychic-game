@@ -1,11 +1,25 @@
-let possibleWords = ['Jasmine', 'Ariel', 'Elsa', 'Anna', 'Aurora', 'Belle', 'Snow White', 'Cinderella', 'Tiana', 'Rapunzel', 'Pocahontas', 'Mulan', 'Merida'];
+let possibleWords = ['Jasmine', 'Ariel', 'Elsa', 'Anna', 'Aurora', 'Belle', 'Snow White', 'Cinderella', 'Tiana', 'Rapunzel', 'Pocahontas', 'Mulan', 'Merida', 'Leia'];
+let possibleAudios = [];
 let wins = 0;
 let currentWord;
+let currentAudio;
 let guessesRemaining;
 let lettersGuessed;
+let pressStart;
+
+
+function initAudio() {
+    for(let i = 0; i < possibleWords.length; i++)
+        possibleAudios[i] = new Audio("assets/audio/" + possibleWords[i] + ".mp3");
+}
+initAudio();
+
 
 function initGame() {
+    if (currentAudio)
+        currentAudio.pause();
     assignCurrentWord();
+    currentAudio.play();
     setEventListeners();
     guessesRemaining = 5;
     lettersGuessed = [];
@@ -27,6 +41,7 @@ function assignCurrentWord() {
     const index = Math.floor(Math.random() * ((possibleWords.length - 1) - 0 + 1)) + 0;
     // const index = 6;
     currentWord = possibleWords[index];
+    currentAudio = possibleAudios[index];
 }
 
 
@@ -48,6 +63,7 @@ function setEventListeners() {
         console.log(currentWord, lettersGuessed, guessesRemaining);
         updateDOM();
         checkIfUserLost();
+        currentAudio.play();
     }
 }
 
@@ -55,7 +71,7 @@ function setEventListeners() {
 function checkIfUserLost() {
     if (guessesRemaining <= 0) {
         wins = 0;
-        alert('Your Prince Will Never Come\n\nWins Reset!');
+        alert('Your Prince Will Never Come\n\nYou Lose');
         initGame();
     }
 }
@@ -94,3 +110,5 @@ function showLettersOrDashes() {
 function letterHasBeenGuessed(letter) {
     return letter === ' ' || lettersGuessed.includes(letter.toUpperCase());
 }
+    let audio = new Audio('audio_file.mp3');
+    audio.play();
