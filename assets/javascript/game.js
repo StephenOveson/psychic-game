@@ -17,20 +17,19 @@ function initAudio() {
 initAudio();
 
 
-document.getElementById('play').onClick = function() {
+document.getElementById('play').addEventListener('click', function() {
     currentAudio.play();
-};
+});
 
-document.getElementById('pause').onClick = function() {
+document.getElementById('stop').addEventListener('click', function() {
     currentAudio.pause();
-};
+});
 
 
 function initGame() {
     if (currentAudio)
         currentAudio.pause();
     assignCurrentWord();
-    currentAudio.play();
     setEventListeners();
     guessesRemaining = 5;
     lettersGuessed = [];
@@ -121,5 +120,3 @@ function showLettersOrDashes() {
 function letterHasBeenGuessed(letter) {
     return letter === ' ' || lettersGuessed.includes(letter.toUpperCase());
 }
-    let audio = new Audio('audio_file.mp3');
-    audio.play();
