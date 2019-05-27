@@ -1,10 +1,7 @@
 body {
     font-family: 'Princess Sofia';
-    font-weight: 300;
-}
-
-#display-word {
-    white-space: pre-wrap;
+    font-weight: 300;    
+    background-image: url('../images/background-image.jpg');
 }
 
 #font-set {
@@ -13,3 +10,10 @@ body {
     line-height: 90px;
     margin: auto;
 }
+
+#display-word {
+    white-space: pre-wrap;
+    font-size: 60px;
+}
+
+

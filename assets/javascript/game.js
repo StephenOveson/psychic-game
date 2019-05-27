@@ -6,6 +6,8 @@ let currentAudio;
 let guessesRemaining;
 let lettersGuessed;
 let pressStart;
+let musicPlay;
+let musicPause;
 
 
 function initAudio() {
@@ -13,6 +15,15 @@ function initAudio() {
         possibleAudios[i] = new Audio("assets/audio/" + possibleWords[i] + ".mp3");
 }
 initAudio();
+
+
+document.getElementById('play').onClick = function() {
+    currentAudio.play();
+};
+
+document.getElementById('pause').onClick = function() {
+    currentAudio.pause();
+};
 
 
 function initGame() {
