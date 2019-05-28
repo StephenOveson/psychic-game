@@ -1,41 +1,64 @@
-let possibleWords = ['Jasmine', 'Ariel', 'Elsa', 'Anna', 'Aurora', 'Belle', 'Snow White', 'Cinderella', 'Tiana', 'Rapunzel', 'Pocahontas', 'Mulan', 'Merida', 'Leia'];
-let possibleAudios = [];
+let disneyWords = ['Jasmine', 'Ariel', 'Elsa', 'Anna', 'Aurora', 'Belle', 'Snow White', 'Cinderella', 'Tiana', 'Rapunzel', 'Pocahontas', 'Mulan', 'Merida', 'Leia'];
+let disneyAudios = [];
 let wins = 0;
 let currentWord;
 let currentAudio;
-let guessesRemaining;
+let totalGuesses;
 let lettersGuessed;
 let pressStart;
 let musicPlay;
 let musicPause;
+let gameStart = false;
+
+function pressAny(){
+    document.onkeyup = function() {
+        if (gameStart = false){
+            return;
+        } else {
+            clearDOM();
+            beginGame();
+        }
+    }
+};
+pressAny();
+
+
+let letsGo = document.getElementById('press-any');
+letsGo.addEventListener('keyup', function(){
+    gameStart = true;
+});
+
+
+function clearDOM() {
+    letsGo.textContent = '';
+};
 
 
 function initAudio() {
-    for(let i = 0; i < possibleWords.length; i++)
-        possibleAudios[i] = new Audio("assets/audio/" + possibleWords[i] + ".mp3");
+    for(let i = 0; i < disneyWords.length; i++)
+        disneyAudios[i] = new Audio("assets/audio/" + disneyWords[i] + ".mp3");
 }
 initAudio();
 
 
-document.getElementById('play').addEventListener('click', function() {
+document.getElementById('play').addEventListener('click', function(){
     currentAudio.play();
 });
 
-document.getElementById('stop').addEventListener('click', function() {
+document.getElementById('stop').addEventListener('click', function(){
     currentAudio.pause();
 });
 
 
-function initGame() {
+function beginGame() {
     if (currentAudio)
         currentAudio.pause();
     assignCurrentWord();
-    setEventListeners();
-    guessesRemaining = 5;
+    takeGuess();
+    totalGuesses = 5;
     lettersGuessed = [];
-    updateDOM();
+    refreshPage();
 }
-initGame();
 
 
 function wordHasBeenGuessed() {
@@ -48,14 +71,14 @@ function wordHasBeenGuessed() {
 
 
 function assignCurrentWord() {
-    const index = Math.floor(Math.random() * ((possibleWords.length - 1) - 0 + 1)) + 0;
+    const index = Math.floor(Math.random() * ((disneyWords.length - 1) - 0 + 1)) + 0;
     // const index = 6;
-    currentWord = possibleWords[index];
-    currentAudio = possibleAudios[index];
+    currentWord = disneyWords[index];
+    currentAudio = disneyAudios[index];
 }
 
 
-function setEventListeners() {
+function takeGuess() {
     document.onkeyup = function (press) {
         if (press.which < 48 || press.which > 90)
             return;
@@ -67,40 +90,39 @@ function setEventListeners() {
         if (wordHasBeenGuessed()) {
             wins++;
             document.getElementById('wins-count').textContent = wins;
-            initGame();
+            beginGame();
         }
-        shouldGuessesGoDown(press.key);
-        console.log(currentWord, lettersGuessed, guessesRemaining);
-        updateDOM();
-        checkIfUserLost();
+        guessMinus(press.key);
+        refreshPage();
+        userLost();
         currentAudio.play();
     }
 }
 
 
-function checkIfUserLost() {
-    if (guessesRemaining <= 0) {
+function userLost() {
+    if (totalGuesses <= 0) {
         wins = 0;
         alert('Your Prince Will Never Come\n\nYou Lose');
-        initGame();
+        beginGame();
     }
 }
 
 
-function shouldGuessesGoDown(lettersGuessed) {
+function guessMinus(lettersGuessed) {
     if (!currentWord.includes(lettersGuessed))
-        guessesRemaining--;
+        totalGuesses--;
 }
 
 
-function updateDOM() {
-    document.getElementById("guesses-remaining").textContent = guessesRemaining;
+function refreshPage() {
+    document.getElementById("guesses-remaining").textContent = totalGuesses;
     document.getElementById("letters-guessed").textContent = lettersGuessed;
-    showLettersOrDashes();
+    hiddenUntilGuessed();
 }
 
 
-function showLettersOrDashes() {
+function hiddenUntilGuessed() {
     let displayWord = '';
     for (let i = 0; i < currentWord.length; i++) {
         let letter = currentWord[i];
