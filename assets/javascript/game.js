@@ -9,7 +9,7 @@ let pressStart;
 let musicPlay;
 let musicPause;
 let gameStart = false;
-let hidden = false;
+let hiddenButton = false;
 
 
 function pressAny(){
@@ -29,7 +29,7 @@ let princessText = document.getElementById('princess-game')
 let letsGo = document.getElementById('press-any');
 letsGo.addEventListener('keyup', function(){
     gameStart = true;
-    hidden = true;
+    hiddenButton = true;
 });
 
 princessText.textContent = 'Princesses Word Game'
@@ -61,7 +61,7 @@ document.getElementById('stop').addEventListener('click', function(){
 document.getElementById('play').style.visibility = 'hidden';
 document.getElementById('stop').style.visibility = 'hidden';
 function action() {
-    if(hidden = false) {
+    if(hiddenButton = false) {
         return;
     } else {
         document.getElementById('play').style.visibility = 'visible';
