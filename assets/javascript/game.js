@@ -25,15 +25,16 @@ function pressAny(){
 };
 pressAny();
 
+
 let princessText = document.getElementById('princess-game')
 let letsGo = document.getElementById('press-any');
 letsGo.addEventListener('keyup', function(){
     gameStart = true;
     hiddenButton = true;
 });
-
 princessText.textContent = 'Princesses Word Game'
 letsGo.textContent = 'Press Any Key to Start!'
+
 
 function clearDOM() {
     letsGo.textContent = '';
@@ -51,15 +52,15 @@ initAudio();
 document.getElementById('play').addEventListener('click', function(){
     currentAudio.play();
 });
-
 document.getElementById('stop').addEventListener('click', function(){
     currentAudio.pause();
 });
 
 
-
 document.getElementById('play').style.visibility = 'hidden';
 document.getElementById('stop').style.visibility = 'hidden';
+
+
 function action() {
     if(hiddenButton = false) {
         return;
