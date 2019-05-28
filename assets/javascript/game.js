@@ -110,7 +110,7 @@ function takeGuess() {
         lettersGuessed.push(press.key.toUpperCase());
         if (wordHasBeenGuessed()) {
             wins++;
-            document.getElementById('wins-count').textContent = wins;
+            document.getElementById('wins-count').textContent = 'Wins ' + wins;
             beginGame();
         }
         guessMinus(press.key);
@@ -137,7 +137,7 @@ function guessMinus(lettersGuessed) {
 
 
 function refreshPage() {
-    document.getElementById("guesses-remaining").textContent = totalGuesses;
+    document.getElementById("guesses-remaining").textContent = 'Guesses Remaining ' + totalGuesses;
     document.getElementById("letters-guessed").textContent = lettersGuessed;
     hiddenUntilGuessed();
 }
