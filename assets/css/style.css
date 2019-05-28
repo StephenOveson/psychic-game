@@ -2,9 +2,11 @@ body {
     font-family: 'Princess Sofia';
     font-weight: 300;    
     background-image: url('../images/background-image.jpg');
+    text-align: center;
+    vertical-align: middle;
 }
 
-#font-set {
+.font-set {
     font-size: 45px;
     max-width: 960px;
     line-height: 90px;
@@ -14,6 +16,14 @@ body {
 #display-word {
     white-space: pre-wrap;
     font-size: 60px;
+}
+
+#princess-game {
+    font-size: 80px;
+}
+
+#press-any {
+    font-size: 50px;
 }
 
 

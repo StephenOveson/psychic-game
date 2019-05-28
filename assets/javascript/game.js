@@ -9,6 +9,8 @@ let pressStart;
 let musicPlay;
 let musicPause;
 let gameStart = false;
+let hidden = false;
+
 
 function pressAny(){
     document.onkeyup = function() {
@@ -17,20 +19,25 @@ function pressAny(){
         } else {
             clearDOM();
             beginGame();
+            action();
         }
     }
 };
 pressAny();
 
-
+let princessText = document.getElementById('princess-game')
 let letsGo = document.getElementById('press-any');
 letsGo.addEventListener('keyup', function(){
     gameStart = true;
+    hidden = true;
 });
 
+princessText.textContent = 'Princesses Word Game'
+letsGo.textContent = 'Press Any Key to Start!'
 
 function clearDOM() {
     letsGo.textContent = '';
+    princessText.textContent = '';
 };
 
 
@@ -48,6 +55,20 @@ document.getElementById('play').addEventListener('click', function(){
 document.getElementById('stop').addEventListener('click', function(){
     currentAudio.pause();
 });
+
+
+
+document.getElementById('play').style.visibility = 'hidden';
+document.getElementById('stop').style.visibility = 'hidden';
+function action() {
+    if(hidden = false) {
+        return;
+    } else {
+        document.getElementById('play').style.visibility = 'visible';
+        document.getElementById('stop').style.visibility = 'visible';
+
+    }
+}
 
 
 function beginGame() {
