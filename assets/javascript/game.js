@@ -19,7 +19,7 @@ function pressAny(){
         } else {
             clearDOM();
             beginGame();
-            action();
+            goAwayButton();
         }
     }
 };
@@ -61,7 +61,7 @@ document.getElementById('play').style.visibility = 'hidden';
 document.getElementById('stop').style.visibility = 'hidden';
 
 
-function action() {
+function goAwayButton() {
     if(hiddenButton = false) {
         return;
     } else {
@@ -114,7 +114,7 @@ function takeGuess() {
             document.getElementById('wins-count').textContent = 'Wins ' + wins;
             beginGame();
         }
-        guessMinus(press.key);
+        guessMinusIfNeeded(press.key);
         refreshPage();
         userLost();
         currentAudio.play();
@@ -131,9 +131,10 @@ function userLost() {
 }
 
 
-function guessMinus(lettersGuessed) {
-    if (!currentWord.includes(lettersGuessed))
+function guessMinusIfNeeded(lettersGuessed) {
+    if (!currentWord.includes(lettersGuessed)) {
         totalGuesses--;
+    }
 }
 
 
