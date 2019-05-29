@@ -1,6 +1,6 @@
 body {
     font-family: 'Princess Sofia';
-    font-weight: 300;    
+    font-weight: 600;    
     background-image: url('../images/background-image.jpg');
     text-align: center;
     vertical-align: middle;
@@ -16,6 +16,9 @@ body {
 #display-word {
     white-space: pre-wrap;
     font-size: 80px;
+    color: honeydew;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 #princess-game {

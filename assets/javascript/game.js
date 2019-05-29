@@ -131,8 +131,8 @@ function userLost() {
 }
 
 
-function guessMinusIfNeeded(lettersGuessed) {
-    if (!currentWord.includes(lettersGuessed) && !currentWord.includes(lettersGuessed.toUpperCase())){
+function guessMinusIfNeeded(lettersAttempted) {
+    if (!currentWord.includes(lettersAttempted.toLowerCase()) && !currentWord.includes(lettersAttempted.toUpperCase())){
         totalGuesses--;
     }
 }
