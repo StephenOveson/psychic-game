@@ -19,7 +19,7 @@ function pressAny(){
         } else {
             clearDOM();
             beginGame();
-            goAwayButton();
+            action();
         }
     }
 };
@@ -61,7 +61,7 @@ document.getElementById('play').style.visibility = 'hidden';
 document.getElementById('stop').style.visibility = 'hidden';
 
 
-function goAwayButton() {
+function action() {
     if(hiddenButton = false) {
         return;
     } else {
@@ -132,7 +132,7 @@ function userLost() {
 
 
 function guessMinusIfNeeded(lettersGuessed) {
-    if (!currentWord.includes(lettersGuessed)) {
+    if (!currentWord.includes(lettersGuessed)){
         totalGuesses--;
     }
 }
