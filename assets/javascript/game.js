@@ -112,6 +112,7 @@ function takeGuess() {
         lettersGuessed.push(press.key.toUpperCase());
         if (wordHasBeenGuessed()) {
             wins++;
+            playbackRate = 1;
             document.getElementById('wins-count').textContent = 'Wins ' + wins;
             beginGame();
         }
