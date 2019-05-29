@@ -10,7 +10,7 @@ let musicPlay;
 let musicPause;
 let gameStart = false;
 let hiddenButton = false;
-
+let playbackRate = 1;
 
 function pressAny(){
     document.onkeyup = function() {
@@ -97,6 +97,7 @@ function assignCurrentWord() {
     // const index = 6;
     currentWord = disneyWords[index];
     currentAudio = disneyAudios[index];
+    currentAudio.playbackRate = playbackRate;
 }
 
 
@@ -125,6 +126,7 @@ function takeGuess() {
 function userLost() {
     if (totalGuesses <= 0) {
         wins = 0;
+        playbackRate /= 2
         alert('Your Prince Will Never Come\n\nYou Lose');
         beginGame();
     }
