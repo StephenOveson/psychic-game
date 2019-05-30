@@ -128,6 +128,9 @@ function userLost() {
     if (totalGuesses <= 0) {
         wins = 0;
         playbackRate /= 2
+        if (playbackRate < 0.0625){
+            playbackRate = 0.0625;
+        }
         alert('Your Prince Will Never Come\n\nYou Lose');
         beginGame();
     }
