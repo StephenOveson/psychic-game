@@ -6,3 +6,4 @@
 
     Princess Hangman Game with a twist.
     Everytime you get a word wrong music gets cut in half creating an eerie atmosphere.
+    Built with JS, HTML, and CSS.
